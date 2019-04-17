@@ -24,8 +24,10 @@ GreenDao特点：
 *2、复杂实体的数据库操作，如何处理自定义类型的实体及属性转换器的使用。*
 例如项目中常常会遇到类似下面这种复杂List的数据：
 <br> ![image.png](https://upload-images.jianshu.io/upload_images/3828835-e69c7a45284ef82b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/380) </br>
-**接下来讲解一下GreenDao的使用步骤：**
+**接下来讲解一下GreenDao的使用步骤：**     <p>
+
 （1）build.gradle中添加greendao依赖，配置数据库版本号、自动生成类的存放目录等。
+
 ```
 apply plugin: 'org.greenrobot.greendao'
 android {
