@@ -1,12 +1,12 @@
 # EasyGreenDao
 GreenDao在实际项目中的运用，以及遇到的坑及解决
 
-####《一》GreenDao简单介绍：
-#####1.GreenDao是什么？
+#《一》GreenDao简单介绍：<p>
+#1.GreenDao是什么？<p>
 官网介绍：GreenDao是Android的一个对象关系映射（ORM）数据库。
 
-**【对象关系映射ORM】:** Object Relational Mapping，对象/关系数据库，是一种将对象层次结构映射成关系型结构的方法。将面向对象语言程序中的对象自动持久化到关系数据库中。本质上就是将数据从一种形式转换到另外一种形式。**简单的理解，其实就是Java中每个对象，都对应数据库表中的一条数据。**
-#####2.为什么要选择GreenDao？
+**【对象关系映射ORM】:** Object Relational Mapping，对象/关系数据库，是一种将对象层次结构映射成关系型结构的方法。将面向对象语言程序中的对象自动持久化到关系数据库中。本质上就是将数据从一种形式转换到另外一种形式。**简单的理解，其实就是Java中每个对象，都对应数据库表中的一条数据。**<p>
+#2.为什么要选择GreenDao？
 GreenDao特点：
 * 性能最大化（Maximum performance）
 * 易于使用的强大API（Easy to use powerful APIs）
@@ -15,7 +15,7 @@ GreenDao特点：
 * 数据库加密以保证数据的高安全性 （Database encryption）·
 
 （以上均来自[官网的介绍](http://greenrobot.org/greendao/)）
-####《二》如何使用GreenDao？
+#《二》如何使用GreenDao？<p>
 可以直接参考Demo的实现：[EasyGreenDao](https://github.com/GraceJoJo/EasyGreenDao)
 ![easygreendao.gif](https://upload-images.jianshu.io/upload_images/3828835-01f8d5fd6ffbcf7f.gif?imageMogr2/auto-orient/strip)**Demo功能包括：**
 *1、简单实体bean和集合List的数据库操作。*
@@ -121,12 +121,12 @@ UserBean   userBean = new UserBean(1l, "18510286862", "小小花", "女");
 其他增删改查的操作请看[EasyGreenDao](https://github.com/GraceJoJo/EasyGreenDao)，这里就不赘述了。
 
 
-####《三》关于自动生成的几个类：
+#《三》关于自动生成的几个类：<p>
 **DaoMaster**：DaoMaster 负责管理数据库对象(SQLiteDatabase)和 DAO 类(对象)，我们可以通过它内部类 OpenHelper 和 DevOpenHelper SQLiteOpenHelper 创建不同模式的 SQLite 数据库。
  **DaoSession**：管理所有的Dao对象。提供通用的插入、查询、更新和删除实体的持久化方法。
 **xxxDao**：每个被@Entity注解的实体，都有对应的xxxDao对象，通过该xxxDao可以对实体进行增删改查操作。
-
-####《四》GreenDao注解的说明：
+<p>
+#《四》GreenDao注解的说明：<p>
 ```
 - @Id :主键 long/Long型，可以通过@Id(autoincrement = true)设置自增长 
 - @Property：设置一个非默认关系映射所对应的列名，默认是的使用字段名 举例：@Property (nameInDb=”name”) 
@@ -159,17 +159,18 @@ UserBean   userBean = new UserBean(1l, "18510286862", "小小花", "女");
  @Id
  private String id;
 ```
-#####《五》GreenDao采坑——可能遇到的问题及解决方案
+<p>
+#《五》GreenDao采坑——可能遇到的问题及解决方案<p>
   (1) App每次升级版本时，如果对@Entity注解的类有过修改，例如某个数据库实体新增了某字段或修改了字段等，记得在build.gradle中更新schemaVersion数据库版本，否则覆盖安装后会崩溃。例如在实体BookEntity新增了des字段，则会报如下错误：
 > Caused by: android.database.sqlite.SQLiteException: table BOOK_ENTITY has no column named DES (Sqlite code 1): , while compiling: INSERT OR REPLACE INTO "BOOK_ENTITY" ("_id","DES","NAME_CN","TAGS","AUTHOR") VALUES (?,?,?,?,?), (OS error - 2:No such file or directory)...
-
-（2）GreenDao 存储数据时，实体里面用@Id 的字段，不可以为int类型，否则会报下面的错误
+<p>
+（2）GreenDao 存储数据时，实体里面用@Id 的字段，不可以为int类型，否则会报下面的错误<p>
 >  java.lang.ClassCastException: java.lang.Integer cannot be cast to java.lang.Long...
                                                        
 @Id类型为Long类型时：
 >  android.database.sqlite.SQLiteException: no such column: T._id (Sqlite code 1): , while compiling: SELECT T."_id",T."IMG",T."SORT",T."TYPE",T."LINK",T."PARAM",T."ADD_TIME",T."STATUS",T."BANNERS" FROM "SUBJECT_BEAN" T, (OS error - 2:No such file or directory)...
 
-（3）使用insert插入时，第一次插入正常，如果再插入时如果主键id值已经存在，则会抛出下面异常。所以我们要求在数据库中插入时，某条记录不存在则插入，存在则更新。即使用 DbManager.getInstance().insertOrReplace();替代DbManager.getInstance().insert()方法。
+（3）使用insert插入时，第一次插入正常，如果再插入时如果主键id值已经存在，则会抛出下面异常。所以我们要求在数据库中插入时，某条记录不存在则插入，存在则更新。即使用 DbManager.getInstance().insertOrReplace();替代DbManager.getInstance().insert()方法。<p>
 
 >  Caused by: android.database.sqlite.SQLiteConstraintException: UNIQUE constraint failed: USER_BEAN._id (Sqlite code 1555), (OS error - 2:No such file or directory)
 
