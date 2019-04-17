@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="哈姆雷特"
+        android:textColor="#212121"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_name"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:text="莎士比亚"
+        android:textColor="#212121" />
+
+    <TextView
+        android:id="@+id/tv_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tv_name"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="文学"
+        android:textColor="#e05864" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_below="@+id/tv_author"
+        android:layout_marginLeft="30px"
+        android:layout_marginTop="8dp"
+        android:background="#eeeeee"></View>
+</RelativeLayout>
