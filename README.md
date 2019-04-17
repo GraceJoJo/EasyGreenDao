@@ -5,7 +5,7 @@ GreenDao在实际项目中的运用，以及遇到的坑及解决
 # 1.GreenDao是什么？<p>
 官网介绍：GreenDao是Android的一个对象关系映射（ORM）数据库。
 
-**【对象关系映射ORM】:** Object Relational Mapping，对象/关系数据库，是一种将对象层次结构映射成关系型结构的方法。将面向对象语言程序中的对象自动持久化到关系数据库中。本质上就是将数据从一种形式转换到另外一种形式。**简单的理解，其实就是Java中每个对象，都对应数据库表中的一条数据。**<p>
+**【对象关系映射ORM】:** Object Relational Mapping，对象/关系数据库，是一种将对象层次结构映射成关系型结构的方法。将面向对象语言程序中的对象自动持久化到关系数据库中。本质上就是将数据从一种形式转换到另外一种形式。**简单的理解，其实就是Java中每个对象，都对应数据库表中的一条数据。**
 #2.为什么要选择GreenDao？
 GreenDao特点：
 * 性能最大化（Maximum performance）
@@ -16,12 +16,12 @@ GreenDao特点：
 
 （以上均来自[官网的介绍](http://greenrobot.org/greendao/)）
 # 《二》如何使用GreenDao？<p>
-可以直接参考Demo的实现：[EasyGreenDao](https://github.com/GraceJoJo/EasyGreenDao)<p>
+可以直接参考Demo的实现：[EasyGreenDao](https://github.com/GraceJoJo/EasyGreenDao)
 ![easygreendao.gif](https://upload-images.jianshu.io/upload_images/3828835-01f8d5fd6ffbcf7f.gif?imageMogr2/auto-orient/strip)
-<p>**Demo功能包括：**
+**Demo功能包括：**
 *1、简单实体bean和集合List的数据库操作。*
 *2、复杂实体的数据库操作，如何处理自定义类型的实体及属性转换器的使用。*
-例如项目中常常会遇到类似下面这种复杂List的数据：<p>
+例如项目中常常会遇到类似下面这种复杂List的数据：
     ![image.png](https://upload-images.jianshu.io/upload_images/3828835-e69c7a45284ef82b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/380)
 **接下来讲解一下GreenDao的使用步骤：**
 （1）build.gradle中添加greendao依赖，配置数据库版本号、自动生成类的存放目录等。
