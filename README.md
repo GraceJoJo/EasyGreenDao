@@ -1,8 +1,8 @@
 # EasyGreenDao
 GreenDao在实际项目中的运用，以及遇到的坑及解决
 
-#《一》GreenDao简单介绍：<p>
-#1.GreenDao是什么？<p>
+# 《一》GreenDao简单介绍：<p>
+# 1.GreenDao是什么？<p>
 官网介绍：GreenDao是Android的一个对象关系映射（ORM）数据库。
 
 **【对象关系映射ORM】:** Object Relational Mapping，对象/关系数据库，是一种将对象层次结构映射成关系型结构的方法。将面向对象语言程序中的对象自动持久化到关系数据库中。本质上就是将数据从一种形式转换到另外一种形式。**简单的理解，其实就是Java中每个对象，都对应数据库表中的一条数据。**<p>
@@ -15,12 +15,14 @@ GreenDao特点：
 * 数据库加密以保证数据的高安全性 （Database encryption）·
 
 （以上均来自[官网的介绍](http://greenrobot.org/greendao/)）
-#《二》如何使用GreenDao？<p>
-可以直接参考Demo的实现：[EasyGreenDao](https://github.com/GraceJoJo/EasyGreenDao)
-![easygreendao.gif](https://upload-images.jianshu.io/upload_images/3828835-01f8d5fd6ffbcf7f.gif?imageMogr2/auto-orient/strip)**Demo功能包括：**
+# 《二》如何使用GreenDao？<p>
+可以直接参考Demo的实现：[EasyGreenDao](https://github.com/GraceJoJo/EasyGreenDao)<p>
+![easygreendao.gif](https://upload-images.jianshu.io/upload_images/3828835-01f8d5fd6ffbcf7f.gif?imageMogr2/auto-orient/strip)
+<p>**Demo功能包括：**
 *1、简单实体bean和集合List的数据库操作。*
 *2、复杂实体的数据库操作，如何处理自定义类型的实体及属性转换器的使用。*
-例如项目中常常会遇到类似下面这种复杂List的数据：![image.png](https://upload-images.jianshu.io/upload_images/3828835-e69c7a45284ef82b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/380)
+例如项目中常常会遇到类似下面这种复杂List的数据：<p>
+    ![image.png](https://upload-images.jianshu.io/upload_images/3828835-e69c7a45284ef82b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/380)
 **接下来讲解一下GreenDao的使用步骤：**
 （1）build.gradle中添加greendao依赖，配置数据库版本号、自动生成类的存放目录等。
 ```
@@ -121,12 +123,13 @@ UserBean   userBean = new UserBean(1l, "18510286862", "小小花", "女");
 其他增删改查的操作请看[EasyGreenDao](https://github.com/GraceJoJo/EasyGreenDao)，这里就不赘述了。
 
 
-#《三》关于自动生成的几个类：<p>
+# 《三》关于自动生成的几个类：<p>
 **DaoMaster**：DaoMaster 负责管理数据库对象(SQLiteDatabase)和 DAO 类(对象)，我们可以通过它内部类 OpenHelper 和 DevOpenHelper SQLiteOpenHelper 创建不同模式的 SQLite 数据库。
  **DaoSession**：管理所有的Dao对象。提供通用的插入、查询、更新和删除实体的持久化方法。
 **xxxDao**：每个被@Entity注解的实体，都有对应的xxxDao对象，通过该xxxDao可以对实体进行增删改查操作。
 <p>
-#《四》GreenDao注解的说明：<p>
+    
+# 《四》GreenDao注解的说明：<p>
 ```
 - @Id :主键 long/Long型，可以通过@Id(autoincrement = true)设置自增长 
 - @Property：设置一个非默认关系映射所对应的列名，默认是的使用字段名 举例：@Property (nameInDb=”name”) 
@@ -160,7 +163,8 @@ UserBean   userBean = new UserBean(1l, "18510286862", "小小花", "女");
  private String id;
 ```
 <p>
-#《五》GreenDao采坑——可能遇到的问题及解决方案<p>
+    
+# 《五》GreenDao采坑——可能遇到的问题及解决方案<p>
   (1) App每次升级版本时，如果对@Entity注解的类有过修改，例如某个数据库实体新增了某字段或修改了字段等，记得在build.gradle中更新schemaVersion数据库版本，否则覆盖安装后会崩溃。例如在实体BookEntity新增了des字段，则会报如下错误：
 > Caused by: android.database.sqlite.SQLiteException: table BOOK_ENTITY has no column named DES (Sqlite code 1): , while compiling: INSERT OR REPLACE INTO "BOOK_ENTITY" ("_id","DES","NAME_CN","TAGS","AUTHOR") VALUES (?,?,?,?,?), (OS error - 2:No such file or directory)...
 <p>
